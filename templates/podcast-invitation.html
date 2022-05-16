@@ -1,0 +1,37 @@
+{% extends 'email_base.html' %}
+{% block details %}
+<div class="finalBox" id="finalBox">
+    <label for="name">Name : </label>
+    <input type="text" name="name" id="receiverName" value="" required>
+    <label for="podcastNameGuest">Name of Guest's Podcast : </label>
+    <input type="text" name="podcastNameGuest" id="guestPodcastName" value="" required>
+    <label for="nameLink">Your Podcast's Name and Link : </label>
+    <input type="text" name="nameLink" id="senderDetails" required>
+    <label for="details">Details of Subscribers, Downloads, etc : </label>
+    <input type="text" name="details" id="stats" value="" required>
+    <label for="guests">Previous Guests you have Invited : </label>
+    <input type="text" name="guests" id="prevGuests" value="" required>
+    <button onclick="finalEmail()" class="send-btn">Send</button>
+</div>
+<script>
+async function finalEmail(){
+let url='https://formal-email-template-api.herokuapp.com/templates/Podcast%20invite%20email';
+let str= await fetch(url)
+
+let final
+var data = await str.json();
+let val=[document.getElementById("receiverName").value,document.getElementById("guestPodcastName").value,document.getElementById("senderDetails").value,document.getElementById("stats").value,document.getElementById("prevGuests").value]
+
+let abc = data.match(/\[(.*?)\]/g);
+let uniqueChars = [...new Set(abc)];
+final=data
+for(let i=0; i<uniqueChars.length; i++){
+final=final.replaceAll(uniqueChars[i],val[i])
+}
+final=final.replace(/\n/g,'<br>')
+document.getElementById("details").innerHTML=final
+document.getElementById("greeting").innerHTML='Here is the final Email'
+
+}
+</script>
+{% endblock details %}

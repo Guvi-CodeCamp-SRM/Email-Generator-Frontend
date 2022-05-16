@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/homestyle.css">
+    <title>Generator</title>
+</head>
+<body>
+    <img class="logo" src="static/guvi_1_logo_1.png" alt="logo">
+    <div class="title">Email Template Generator</div>
+    <div class="container">
+        <label for="template">Choose Email Template : </label>
+        <select name="template" id="template" onchange="emailInputs(this.value)">
+            <option value="" disabled selected>Select Template</option>
+            <option value="welcome-email-template">Welcome Email Template</option>
+            <option value="meeting-invitation-template">Meeting Invitation Email Template</option>
+            <option value="product-launch-template">Product Launch Template</option>
+            <option value="podcast-invite-template">Podcast Invite Email</option>
+            <option value="client-onboarding-template">Client Onboarding Email</option>
+            <option value="event-invitation-template">Event Invite Email</option>
+        </select>
+    </div>
+    <div class="info">
+        <div class="info-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Tellus elementum sagittis vitae et leo duis ut.</div>
+        <img src="static/email-home-2.gif" alt="mail" class="info-img">
+    </div>
+    <script>
+        function emailInputs(src){
+            window.location=src;
+        }
+    </script>
+</body>
+</html>

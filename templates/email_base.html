@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/emailstyle.css">
+    <title>Build an Email</title>
+</head>
+<body>
+    <img class="logo" src="static/guvi_1_logo_1.png" alt="logo">
+    <div class="main">
+        <div class="greeting">Greeting</div>
+            <div class="details" id="details">
+                {% block details %}
+
+                {% endblock details %}
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

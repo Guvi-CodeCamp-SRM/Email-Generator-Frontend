@@ -1,0 +1,35 @@
+{% extends 'email_base.html' %}
+{% block details %}
+<div class="finalBox" id="finalBox">
+    <label for="name" >Name : </label>
+    <input type="text" name="name" id="receiverName" value="" >
+    <label for="projectSoftware">Project Planning Software of Choice : </label>
+    <input type="text" name="projectSoftware" id="software" value="" required>
+    <label for="email">Your Email ID : </label>
+    <input type="email" name="email" id="senderEmail" value="" required>
+    <label for="number">Your Contact Number : </label>
+    <input type="tel" name="number" pattern="[0-9]{10}" id="teleNum" value="" required>
+    <button onclick="finalEmail()" class="send-btn">Send</button>
+</div>
+<script>
+async function finalEmail(){
+let url='https://formal-email-template-api.herokuapp.com/templates/Client%20onboarding%20email';
+let str= await fetch(url)
+
+let final
+var data = await str.json();
+let val=[document.getElementById("receiverName").value,document.getElementById("software").value,document.getElementById("senderEmail").value,document.getElementById("teleNum").value]
+
+let abc = data.match(/\[(.*?)\]/g);
+let uniqueChars = [...new Set(abc)];
+final=data
+for(let i=0; i<uniqueChars.length; i++){
+final=final.replaceAll(uniqueChars[i],val[i])
+}
+final=final.replace(/\n/g,'<br>')
+document.getElementById("details").innerHTML=final
+document.getElementById("greeting").innerHTML='Here is the final Email'
+
+}
+</script>
+{% endblock details %}

@@ -1,0 +1,39 @@
+{% extends 'email_base.html' %}
+{% block details %}
+<div class="finalBox" id="finalBox">
+    <label for="name" >Name : </label>
+    <input type="text" name="name" id="receiverName" value="" >
+    <label for="productName">Product Name : </label>
+    <input type="text" name="productName" id="product" value="" >
+    <label for="problemAndSolution">Decribe the Problem and Solution</label>
+    <input type="text" name="problemAndSolution" id="problem" value="">
+    <label for="link">Link : </label>
+    <input type="text" name="link" id="link1" value="" >
+    <label for="timeFrame">Mention Time Frame or Number of Sales : </label>
+    <input type="text" name="timeFrame" id="timeF" value="" >
+    <label for="review">Testimonial from a Customer : </label>
+    <input type="text" name="review" id="reviewCustomer" value="" >
+    <button onclick="finalEmail()" class="send-btn">Send</button>
+</div>
+<script>
+async function finalEmail(){
+let url='https://formal-email-template-api.herokuapp.com/templates/Product%20launch%20email';
+let str= await fetch(url)
+
+let final
+var data = await str.json();
+let val=[document.getElementById("receiverName").value,document.getElementById("product").value,document.getElementById("problem").value,document.getElementById("link1").value,document.getElementById("timeF").value,document.getElementById("reviewCustomer").value]
+
+let abc = data.match(/\[(.*?)\]/g);
+let uniqueChars = [...new Set(abc)];
+final=data
+for(let i=0; i<uniqueChars.length; i++){
+final=final.replaceAll(uniqueChars[i],val[i])
+}
+final=final.replace(/\n/g,'<br>')
+document.getElementById("details").innerHTML=final
+document.getElementById("greeting").innerHTML='Here is the final Email'
+
+}
+</script>
+{% endblock details %}

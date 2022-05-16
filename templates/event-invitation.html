@@ -1,0 +1,35 @@
+{% extends 'email_base.html' %}
+{% block details %}
+<div class="finalBox" id="finalBox">
+    <label for="name">Name : </label>
+    <input type="text" name="name" id="receiverName" value="" required>
+    <label for="event">Name of the Event : </label>
+    <input type="text" name="event" id="eventName" value="" required>
+    <label for="description">Describe the Event(2 lines preferably) : </label>
+    <input type="text" name="description" id="desc" value="" required>
+    <label for="link">RSVP on the Invitation Link : </label>
+    <input type="text" name="link" id="link1" value="" required>
+    <button onclick="finalEmail()" class="send-btn">Send</button>
+</div>
+<script>
+async function finalEmail(){
+let url='https://formal-email-template-api.herokuapp.com/templates/Event%20invite%20email';
+let str= await fetch(url)
+
+let final
+var data = await str.json();
+let val=[document.getElementById("receiverName").value,document.getElementById("eventName").value,document.getElementById("desc").value,document.getElementById("link1").value]
+
+let abc = data.match(/\[(.*?)\]/g);
+let uniqueChars = [...new Set(abc)];
+final=data
+for(let i=0; i<uniqueChars.length; i++){
+final=final.replaceAll(uniqueChars[i],val[i])
+}
+final=final.replace(/\n/g,'<br>')
+document.getElementById("details").innerHTML=final
+document.getElementById("greeting").innerHTML='Here is the final Email'
+
+}
+</script>
+{% endblock details %}
