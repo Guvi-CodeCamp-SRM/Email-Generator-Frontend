@@ -1,0 +1,57 @@
+html{
+    margin: 0;
+    background-size: 100% 100%;
+    background-color: #D6C9C9;
+    color: #0B0C10;
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    width:100%;
+    height: 100%; 
+    margin: 0;   
+}
+
+.logo{
+    height: 5rem;
+}
+
+.greeting{
+    text-align: center;
+    font-size: 48px;
+}
+
+.main{
+    padding: 0 8vw 2vw 8vw;
+}
+
+.finalBox{
+    font-size: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.send-btn{
+    background: transparent;
+    color: #0B0C10;
+    border: none;
+    width: 100%;
+    font-size: 32px;
+    border-radius: 5px;
+}
+
+.send-btn:hover{
+    background: #0B0C10;
+    color: #C7D3DD;
+    transition: .3s;
+}
+
+input{
+    background-color: #232427;
+    border: none;
+    border-radius: 5px;
+    font-size: 26px;
+    color: white;
+    margin-bottom: 1vw;
+}
